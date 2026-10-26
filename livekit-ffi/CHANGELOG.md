@@ -316,6 +316,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - bump libwebrtc to m125
+## 0.13.3 (2026-10-26)
+
+### Features
+
+- Create the well-known data channels as negotiated (fixed IDs) when the server supports it (protocol 18), saving the data channel open handshake round trip. Falls back to in-band channels against older servers.
+
+### Fixes
+
+- Release local tracks when the server ends the room by detaching publisher senders before the publisher PeerConnection closes, and make `RtpSender::track()` return `None` for a detached sender instead of dereferencing null.
+- Expose inference and observability grants on the UniFFI access-token surface: `TokenOptions` gains `inference_grants` and `observability_grants`, and verified `Claims` carry `inference` and `observability`.
+- Add `InferenceGrants` and `AccessToken::with_inference_grants`, so Rust services can mint tokens for LiveKit Inference.
+- Add `ObservabilityGrants` and `AccessToken::with_observability_grants`, so Rust services can mint tokens that publish observability data.
+- Remove the `use_legacy_data_streams` migration flag. The FFI `RoomDataStreamOptions.use_legacy_client_implementation` field is now deprecated and ignored, and the hidden `RoomDataStreamOptions::with_legacy_client_implementation` builder and the hidden `SignalOptions::use_legacy_data_streams` field are gone; clients always advertise data streams v2 support.
+
 ## 0.13.2 (2026-10-23)
 
 ### Fixes

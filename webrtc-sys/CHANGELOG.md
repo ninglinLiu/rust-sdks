@@ -165,6 +165,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - bump libwebrtc to m125
+## 0.3.52 (2026-10-26)
+
+### Fixes
+
+- Release local tracks when the server ends the room by detaching publisher senders before the publisher PeerConnection closes, and make `RtpSender::track()` return `None` for a detached sender instead of dereferencing null.
+
 ## 0.3.51 (2026-10-23)
 
 ### Fixes
